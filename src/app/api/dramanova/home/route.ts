@@ -1,4 +1,4 @@
-import { encryptedResponse } from "@/lib/api-utils";
+import { encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 
 const UPSTREAM_API = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.sansekai.my.id/api";
 
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
       targetUrl.searchParams.append(key, value);
     });
 
-    const res = await fetch(targetUrl.toString(), {
+    const res = await upstreamFetch(targetUrl.toString(), {
       headers: {
         "User-Agent": "okhttp/4.12.0",
       },

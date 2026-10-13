@@ -70,43 +70,43 @@ export function Header() {
 
   const isSearching = isPineDrama
     ? isSearchingPineDrama
-    : isDramaBox 
-      ? isSearchingDramaBox 
-      : isReelShort 
-        ? isSearchingReelShort 
+    : isDramaBox
+      ? isSearchingDramaBox
+      : isReelShort
+        ? isSearchingReelShort
         : isShortMax
           ? isSearchingShortMax
-          : isNetShort 
+          : isNetShort
             ? isSearchingNetShort
-              : isMelolo
-                ? isSearchingMelolo
-                : isFreeReels
-                  ? isSearchingFreeReels
-                  : isDramaNova
-                    ? isSearchingDramaNova
-                    : isGoodShort
-                      ? isSearchingGoodShort
-                      : isSearchingFlickReels;
+            : isMelolo
+              ? isSearchingMelolo
+              : isFreeReels
+                ? isSearchingFreeReels
+                : isDramaNova
+                  ? isSearchingDramaNova
+                  : isGoodShort
+                    ? isSearchingGoodShort
+                    : isSearchingFlickReels;
 
   // Search results processing
   const searchResults = isPineDrama
     ? pineDramaResults
-    : isDramaBox 
-      ? dramaBoxResults 
-      : isReelShort 
-        ? reelShortResults?.data 
+    : isDramaBox
+      ? dramaBoxResults
+      : isReelShort
+        ? reelShortResults?.data
         : isShortMax
           ? shortMaxResults?.data
           : isNetShort
             ? netShortResults?.data
             : isMelolo
               ? meloloResults?.data?.search_data?.flatMap((item: any) => item.books || [])
-                  .filter((book: any) => book.thumb_url && book.thumb_url !== "") || []
+                .filter((book: any) => book.thumb_url && book.thumb_url !== "") || []
               : isFreeReels
                 ? freeReelsResults
                 : isDramaNova
                   ? dramaNovaResults
-                   : isGoodShort
+                  : isGoodShort
                     ? goodShortResults
                     : isFlickReels
                       ? flickReelsResults?.data
@@ -132,7 +132,7 @@ export function Header() {
               <Play className="w-5 h-5 text-white fill-white" />
             </div>
             <span className="font-display font-bold text-xl gradient-text">
-              SekaiDrama
+              Schatzi Drama
             </span>
           </Link>
 
@@ -415,9 +415,9 @@ export function Header() {
                           )}
                           {book.stat_infos && book.stat_infos.length > 0 && (
                             <div className="flex flex-wrap gap-1.5 mt-2">
-                               <span className="tag-pill text-[10px]">
-                                  {book.stat_infos[0]}
-                               </span>
+                              <span className="tag-pill text-[10px]">
+                                {book.stat_infos[0]}
+                              </span>
                             </div>
                           )}
                         </div>
@@ -697,9 +697,8 @@ export function Header() {
                           sizes="48px"
                         />
                       </div>
-                      <span className={`text-xs font-medium text-center leading-tight line-clamp-1 ${
-                        platformInfo.id === platform.id ? "text-primary" : "text-muted-foreground"
-                      }`}>
+                      <span className={`text-xs font-medium text-center leading-tight line-clamp-1 ${platformInfo.id === platform.id ? "text-primary" : "text-muted-foreground"
+                        }`}>
                         {platform.name}
                       </span>
                     </button>

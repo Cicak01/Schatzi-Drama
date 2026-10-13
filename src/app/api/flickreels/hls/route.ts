@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { getRandomIndonesianIp } from "@/lib/upstream-patch";
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -17,6 +18,7 @@ function fetchBuffer(url: string, redirectCount = 5): Promise<{ buffer: Buffer; 
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         'Accept': '*/*',
         'Accept-Encoding': 'identity',
+        'X-Forwarded-For': getRandomIndonesianIp(),
       },
       timeout: 30000,
     }, (res: any) => {

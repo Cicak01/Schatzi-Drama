@@ -1,4 +1,4 @@
-import { safeJson, encryptedResponse } from "@/lib/api-utils";
+import { safeJson, encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 import { optimizeCover } from "@/lib/image-utils";
 import { NextRequest } from "next/server";
 
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const page = searchParams.get("page") || "1";
 
-    const response = await fetch(`${UPSTREAM_API}/foryou?page=${page}`, {
+    const response = await upstreamFetch(`${UPSTREAM_API}/foryou?page=${page}`, {
       cache: 'no-store',
     });
 

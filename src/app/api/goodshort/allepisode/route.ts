@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { encryptedResponse } from "@/lib/api-utils";
+import { encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 
 const UPSTREAM_API = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.sansekai.my.id/api";
 
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
       return encryptedResponse({ status: 400, message: "bookId is required", data: null }, 400);
     }
 
-    const res = await fetch(`${UPSTREAM_API}/goodshort/get-allepisode?bookId=${bookId}`, {
+    const res = await upstreamFetch(`${UPSTREAM_API}/goodshort/get-allepisode?bookId=${bookId}`, {
       headers: {
         "User-Agent": "okhttp/4.12.0",
       },

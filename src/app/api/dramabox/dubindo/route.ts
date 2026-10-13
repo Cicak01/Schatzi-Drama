@@ -1,4 +1,4 @@
-import { safeJson, encryptedResponse } from "@/lib/api-utils";
+import { safeJson, encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 import { NextRequest, NextResponse } from "next/server";
 
 const UPSTREAM_API = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.sansekai.my.id/api") + "/dramabox";
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const page = searchParams.get("page") || "1";
 
   try {
-    const response = await fetch(
+    const response = await upstreamFetch(
       `${UPSTREAM_API}/dubindo?classify=${classify}&page=${page}`,
       { cache: 'no-store',}
     );

@@ -1,3 +1,4 @@
+import { upstreamFetch } from "@/lib/api-utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -8,7 +9,7 @@ export async function GET(req: NextRequest) {
       return new NextResponse("url parameter is required", { status: 400 });
     }
 
-    const res = await fetch(url, {
+    const res = await upstreamFetch(url, {
       headers: {
         "User-Agent": "okhttp/4.12.0",
       },

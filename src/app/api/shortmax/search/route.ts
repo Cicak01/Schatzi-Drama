@@ -1,4 +1,4 @@
-import { safeJson, encryptedResponse } from "@/lib/api-utils";
+import { safeJson, encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 import { optimizeCover } from "@/lib/image-utils";
 import { NextRequest } from "next/server";
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       return encryptedResponse({ success: true, data: [] });
     }
 
-    const response = await fetch(
+    const response = await upstreamFetch(
       `${UPSTREAM_API}/search?query=${encodeURIComponent(query)}`,
       { cache: 'no-store' }
     );

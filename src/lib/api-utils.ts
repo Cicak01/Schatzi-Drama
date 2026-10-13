@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { encryptData } from "@/lib/crypto";
+import "@/lib/upstream-patch";
+export { upstreamFetch, getRandomIndonesianIp } from "@/lib/upstream-patch";
 
 export async function safeJson<T>(response: Response): Promise<T> {
   const text = await response.text();

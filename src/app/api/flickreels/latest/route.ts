@@ -1,4 +1,4 @@
-import { safeJson, encryptedResponse } from "@/lib/api-utils";
+import { safeJson, encryptedResponse, upstreamFetch } from "@/lib/api-utils";
 import { optimizeCover } from "@/lib/image-utils";
 import { NextRequest } from "next/server";
 
@@ -6,7 +6,7 @@ const UPSTREAM_API = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.sanse
 
 export async function GET(_request: NextRequest) {
   try {
-    const response = await fetch(`${UPSTREAM_API}/latest`, {
+    const response = await upstreamFetch(`${UPSTREAM_API}/latest`, {
       cache: "no-store",
     });
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"; 
 import https from "https";
 import http from "http";
+import { getRandomIndonesianIp } from "@/lib/upstream-patch";
 
 export const dynamic = 'force-dynamic'; // Prevent static optimization
 
@@ -118,6 +119,10 @@ export async function GET(req: NextRequest) {
       "Referer": refererParam || new URL(url).origin + "/", 
       // NOTE: Do NOT send Origin header - video CDN returns 403 if Origin doesn't match their whitelist
     };
+
+    if (url.includes("api.sansekai.my.id")) {
+      headers["X-Forwarded-For"] = getRandomIndonesianIp();
+    }
 
     if (range) {
       headers["Range"] = range;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import https from "https";
 import http from "http";
+import { getRandomIndonesianIp } from "@/lib/upstream-patch";
 
 const UPSTREAM_API = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.sansekai.my.id/api") + "/dramabox";
 
@@ -95,6 +96,7 @@ export async function GET(request: NextRequest) {
     const headers: Record<string, string> = {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       "Accept": "*/*",
+      "X-Forwarded-For": getRandomIndonesianIp(),
     };
 
     if (range) {
